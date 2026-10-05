@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Header } from "@/app/components/Header";
 import { useCart } from "@/app/providers/CartProvider";
-import { formatPrice } from "@/lib/format";
+import { formatCurrency } from "@/lib/format";
 
 export default function CartPage() {
   const { items, subtotal, removeItem, updateQuantity } = useCart();
@@ -47,7 +47,7 @@ export default function CartPage() {
                     <Link href={`/products/${product.id}`} className="mt-1 block truncate font-bold text-slate-900 hover:text-indigo-700">
                       {product.name}
                     </Link>
-                    <p className="mt-1 text-sm font-semibold text-slate-700">{formatPrice(product.price)}</p>
+                    <p className="mt-1 text-sm font-semibold text-slate-700">{formatCurrency(product.price)}</p>
                   </div>
                   <div className="flex items-center rounded-xl border border-slate-200">
                     <button type="button" onClick={() => updateQuantity(product.id, quantity - 1)} className="size-10 text-lg text-slate-600 hover:text-indigo-700" aria-label={`Quitar una unidad de ${product.name}`}>−</button>
@@ -61,13 +61,13 @@ export default function CartPage() {
             <aside className="rounded-2xl border border-slate-200 bg-white p-6">
               <h2 className="text-lg font-bold text-slate-900">Resumen del pedido</h2>
               <div className="mt-5 flex justify-between text-sm text-slate-600">
-                <span>Subtotal</span><span>{formatPrice(subtotal)}</span>
+                <span>Subtotal</span><span>{formatCurrency(subtotal)}</span>
               </div>
               <div className="mt-3 flex justify-between text-sm text-slate-600">
-                <span>Envío</span><span className="font-semibold text-emerald-700">{subtotal >= 50 ? "Gratis" : "4,90 €"}</span>
+                <span>Envío</span><span className="font-semibold text-emerald-700">{subtotal >= 50 ? "Gratis" : formatCurrency(4.9)}</span>
               </div>
               <div className="mt-5 flex justify-between border-t border-slate-200 pt-5 text-base font-extrabold text-slate-900">
-                <span>Total</span><span>{formatPrice(subtotal + (subtotal >= 50 ? 0 : 4.9))}</span>
+                <span>Total</span><span>{formatCurrency(subtotal + (subtotal >= 50 ? 0 : 4.9))}</span>
               </div>
               <Link href="/checkout" className="mt-6 flex min-h-12 items-center justify-center rounded-xl bg-indigo-600 px-4 text-sm font-bold text-white transition hover:bg-indigo-700">
                 Continuar al pago

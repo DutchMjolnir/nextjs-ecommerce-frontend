@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { AddToCartButton } from "@/app/components/AddToCartButton";
-import { formatPrice } from "@/lib/format";
+import { formatCurrency } from "@/lib/format";
 import type { Product } from "@/lib/types";
 
 export function ProductCard({ product }: { product: Product }) {
@@ -39,7 +39,7 @@ export function ProductCard({ product }: { product: Product }) {
         </p>
         <div className="mt-5 flex items-center justify-between gap-3">
           <span className="text-xl font-extrabold tracking-tight text-slate-900">
-            {formatPrice(product.price)}
+            {formatCurrency(product.price)}
           </span>
           <AddToCartButton product={product} compact />
         </div>

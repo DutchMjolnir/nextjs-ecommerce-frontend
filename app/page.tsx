@@ -47,7 +47,7 @@ export default function Home() {
                 <span aria-hidden="true" className="ml-2">→</span>
               </a>
               <div className="mt-9 flex flex-wrap gap-x-7 gap-y-2 text-xs font-medium text-slate-300">
-                <span>✓ Envío gratuito desde 50 €</span>
+                <span>✓ Envío gratuito desde $50</span>
                 <span>✓ Devolución fácil durante 30 días</span>
               </div>
             </div>

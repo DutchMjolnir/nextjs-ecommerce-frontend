@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Header } from "@/app/components/Header";
 import { AddToCartButton } from "@/app/components/AddToCartButton";
 import { getProduct } from "@/lib/products";
-import { formatPrice } from "@/lib/format";
+import { formatCurrency } from "@/lib/format";
 
 export default async function ProductPage({
   params,
@@ -48,7 +48,7 @@ export default async function ProductPage({
             </h1>
             <p className="mt-5 text-lg leading-8 text-slate-600">{product.description}</p>
             <p className="mt-7 text-3xl font-extrabold tracking-tight text-slate-900">
-              {formatPrice(product.price)}
+              {formatCurrency(product.price)}
             </p>
             <p className="mt-2 text-sm text-slate-500">
               {product.stock > 0 ? `${product.stock} unidades disponibles` : "Agotado"}
@@ -57,7 +57,7 @@ export default async function ProductPage({
               <AddToCartButton product={product} />
             </div>
             <div className="mt-8 grid gap-3 border-t border-slate-200 pt-6 text-sm text-slate-600">
-              <p>✓ Envío gratis a partir de 50 €</p>
+              <p>✓ Envío gratis a partir de $50</p>
               <p>✓ Devoluciones sencillas durante 30 días</p>
               <p>✓ Compra segura y atención cercana</p>
             </div>

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { Header } from "@/app/components/Header";
 import type { ApiResponse, Order } from "@/lib/types";
-import { formatPrice } from "@/lib/format";
+import { formatCurrency } from "@/lib/format";
 
 async function getOrders(token: string): Promise<Order[] | null> {
   const apiUrl = process.env.API_URL;
@@ -55,10 +55,10 @@ export default async function OrdersPage() {
               <article key={order.id} className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
                 <div>
                   <h2 className="font-bold text-slate-900">Pedido #{order.id}</h2>
-                  <p className="mt-1 text-sm text-slate-500">{new Date(order.created_at).toLocaleDateString("es-ES")}</p>
+                  <p className="mt-1 text-sm text-slate-500">{new Date(order.created_at).toLocaleDateString("es")}</p>
                 </div>
                 <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-bold capitalize text-indigo-700">{order.status}</span>
-                <p className="font-extrabold text-slate-900">{formatPrice(order.total)}</p>
+                <p className="font-extrabold text-slate-900">{formatCurrency(order.total)}</p>
               </article>
             ))}
           </div>

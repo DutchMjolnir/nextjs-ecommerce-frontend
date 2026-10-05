@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState, useTransition, type FormEvent } from "react";
 import { createOrderAction } from "@/app/actions";
 import { useCart } from "@/app/providers/CartProvider";
-import { formatPrice } from "@/lib/format";
+import { formatCurrency } from "@/lib/format";
 
 export function CheckoutForm() {
   const { items, subtotal, clearCart } = useCart();
@@ -95,12 +95,12 @@ export function CheckoutForm() {
           {items.map(({ product, quantity }) => (
             <div key={product.id} className="flex justify-between gap-3 text-sm">
               <span className="text-slate-600">{product.name} <span className="text-slate-400">× {quantity}</span></span>
-              <span className="shrink-0 font-semibold text-slate-800">{formatPrice(Number(product.price) * quantity)}</span>
+              <span className="shrink-0 font-semibold text-slate-800">{formatCurrency(Number(product.price) * quantity)}</span>
             </div>
           ))}
         </div>
-        <div className="mt-5 flex justify-between border-t border-slate-200 pt-4 text-sm text-slate-600"><span>Envío</span><span>{subtotal >= 50 ? "Gratis" : "4,90 €"}</span></div>
-        <div className="mt-4 flex justify-between text-base font-extrabold text-slate-900"><span>Total</span><span>{formatPrice(total)}</span></div>
+        <div className="mt-5 flex justify-between border-t border-slate-200 pt-4 text-sm text-slate-600"><span>Envío</span><span>{subtotal >= 50 ? "Gratis" : formatCurrency(4.9)}</span></div>
+        <div className="mt-4 flex justify-between text-base font-extrabold text-slate-900"><span>Total</span><span>{formatCurrency(total)}</span></div>
         <button disabled={pending} className="mt-6 min-h-12 w-full rounded-xl bg-indigo-600 px-4 font-bold text-white transition hover:bg-indigo-700 disabled:cursor-wait disabled:opacity-60">
           {pending ? "Confirmando..." : "Confirmar compra"}
         </button>
